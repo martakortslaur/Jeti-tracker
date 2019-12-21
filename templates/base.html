@@ -1,0 +1,40 @@
+<html> 
+
+<head>
+    <title>{% block page_title %}{% endblock %}</title> 
+    <!-- """Inside of the title for example I would say block page_title
+and this will act as a placeholder that will allow us to put titles into the
+title element from within a different page so I just need a block and an end
+block inside of the body then I will create another block inside of a h1
+element so I would say h1 and then inside of there I would say block""" -->
+</head>
+
+<body>
+    <h1>
+        {% block page_heading %}{% endblock %}
+    </h1>
+
+    <nav>
+        <ul>
+            {% if user.is_authenticated %}
+            <li><a href="#">Profile</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'registration' %}">Register</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <hr> {% if messages %}
+    <div>
+        {% for message in messages %} {{ message }} {% endfor %}
+    </div>
+    {% endif %} {% block content %}{% endblock %}
+
+     <!-- Inside of our base.html page we're going to create
+another block at the end just before our closing body tag called content and this
+is going to be the kind of the main kind of content area for our project  -->
+</body>
+
+</html>
