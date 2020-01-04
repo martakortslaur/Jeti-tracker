@@ -60,7 +60,7 @@ ROOT_URLCONF = 'jetitracker.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')], """And because we now have multiple templates folders, we need to specify in our settings that all directories called templates potentially contain templates."""
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
