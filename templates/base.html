@@ -1,7 +1,19 @@
-<html> 
-
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>{% block page_title %}{% endblock %}</title> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Bootstrap  and Font-Awesome CDNs-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Farro&display=swap" rel="stylesheet">
+    <!--Custom CSS file-->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Jeti-tracker- {% block page_title %}{% endblock %}</title>
+    {% block head_js %}
+    {% endblock head_js %}
     <!-- """Inside of the title for example I would say block page_title
 and this will act as a placeholder that will allow us to put titles into the
 title element from within a different page so I just need a block and an end
@@ -28,7 +40,13 @@ element so I would say h1 and then inside of there I would say block""" -->
 
     <hr> {% if messages %}
     <div>
-        {% for message in messages %} {{ message }} {% endfor %}
+        {% for message in messages %}
+            <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
+                <div class="alert alert-success" role="alert">
+                     {{message}}
+                </div>
+            </div>
+        {% endfor %}
     </div>
     {% endif %} {% block content %}{% endblock %}
 
