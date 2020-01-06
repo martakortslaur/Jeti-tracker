@@ -6,7 +6,7 @@ from accounts.forms import UserLoginForm, UserRegistrationForm
 
 def index(request):
     """Return the index.html file"""
-    return render(request,  'index.html')
+    return render(request,  'accounts/index.html')
 
 
 def logout(request):
@@ -45,15 +45,15 @@ def login(request):
                 login_form.add_error(None, "Your username or password is incorrect")
     else:
         login_form = UserLoginForm()
-    return render(request, 'login.html', {'login_form': login_form})
+    return render(request, 'accounts/login.html', {'login_form': login_form})
 
 def registration(request):
     """Render the registration page"""
     registration_form = UserRegistrationForm()
-    return render(request, 'registration.html', {
+    return render(request, 'accounts/registration.html', {
         "registration_form": registration_form})
 
 def user_profile(request):
     """The user's profile page"""
     user = User.objects.get(email=request.user.email)
-    return render(request, 'profile.html', {"profile": user})
+    return render(request, 'accounts/profile.html', {"profile": user})
