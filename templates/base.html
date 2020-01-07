@@ -1,20 +1,23 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!--Bootstrap  and Font-Awesome CDNs-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Farro&display=swap" rel="stylesheet">
-    <!--Custom CSS file-->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
-    <title>Jeti-tracker- {% block page_title %}{% endblock %}</title>
-    {% block head_js %}
-    {% endblock head_js %}
-    <!-- """Inside of the title for example I would say block page_title
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<!--Bootstrap  and Font-Awesome CDNs-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+		integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Farro&display=swap" rel="stylesheet">
+	<!--Custom CSS file-->
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+	<title>Jeti-tracker- {% block page_title %}{% endblock %}</title>
+	{% block head_js %}
+	{% endblock head_js %}
+	<!-- """Inside of the title for example I would say block page_title
 and this will act as a placeholder that will allow us to put titles into the
 title element from within a different page so I just need a block and an end
 block inside of the body then I will create another block inside of a h1
@@ -24,36 +27,46 @@ element so I would say h1 and then inside of there I would say block""" -->
 <body>
 
 
-    <nav class="navbar navbar-default">
-        <ul class="nav navbar-nav">
-            {% if user.is_authenticated %}
-            <li><a href="{% url 'profile' %}">Profile</a></li>
-            <li><a href="{% url 'logout' %}">Logout</a></li>
-            {% else %}
-            <li><a href="{% url 'login' %}">Login</a></li>
-            <li><a href="{% url 'registration' %}">Register</a></li>
-            {% endif %}
-        </ul>
-    </nav>
-    <h1>
-        {% block page_heading %}{% endblock %}
-    </h1>
-        {% if messages %}
-    <div>
-        {% for message in messages %}
-            <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
-                <div class="alert alert-success" role="alert">
-                     {{message}}
-                </div>
-            </div>
-        {% endfor %}
-    </div>
-    {% endif %} {% block content %}{% endblock %}
+	<nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+		<a class="navbar-brand" href="#">Jeti tracker</a>
+		<!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span></button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
+			<ul class="nav navbar-nav mr-auto">
+				{% if user.is_authenticated %}
+				<li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">Profile
+						<span class="sr-only">(current)</span></a></li>
+				<li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+              
+				{% else %}
+				<li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+				<li class="nav-item"><a class="nav-link" href="{% url 'registration' %}">Register</a></li>
+				{% endif %}
+			</ul>
+		<!-- </div> -->
+	</nav>
 
-     <!-- Inside of our base.html page we're going to create
+	<h1>
+		{% block page_heading %}{% endblock %}
+	</h1>
+	{% if messages %}
+	<div>
+		{% for message in messages %}
+		<div class="col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
+			<div class="alert alert-success" role="alert">
+				{{message}}
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+	{% endif %} {% block content %}{% endblock %}
+
+	<!-- Inside of our base.html page we're going to create
 another block at the end just before our closing body tag called content and this
 is going to be the kind of the main kind of content area for our project  -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+	</script>
 
 </body>
 
