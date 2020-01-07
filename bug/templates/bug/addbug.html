@@ -4,8 +4,8 @@
 {% block content %}
     <div class="row form-row">
         <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
-            <h1> Add a New Bug </h1>
-            <!--Displays a form that allows users to file a bug report-->
+            <h1> Please Add a New Bug </h1>
+           
             <form method="POST">
                 {% csrf_token %}
                 {{ form | as_bootstrap}}

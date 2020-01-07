@@ -30,11 +30,11 @@ def show_bug(request):
     'allbugs' template. Pagination is used to
     display eight bugs per page.
     """
-    bugs = Bug.objects.order_by('-posted_on').all()
-    paginator = Paginator(bugs, 8)
+    bug = Bug.objects.order_by('-posted_on').all()
+    paginator = Paginator(bug, 8)
     page = request.GET.get('page')
-    bugs = paginator.get_page(page)
-    return render(request, 'bug/allbug.html', {'bug': bugs})
+    bug = paginator.get_page(page)
+    return render(request, 'bug/show_bug.html', {'bug': bug})
 
 
 @login_required()
