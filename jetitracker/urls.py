@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from accounts.views import index, logout, login, registration, user_profile, bug
+from accounts.views import index, logout, login, registration, user_profile
 from accounts import urls as accounts_urls
+from bug import urls as bug_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -26,5 +27,5 @@ urlpatterns = [
     url(r'^accounts/register/$', registration, name="registration"),
     url(r'^accounts/profile/$', user_profile, name="profile"),
     url(r'^accounts/', include(accounts_urls)),
-    url(r'^bug/$', bug, name="bug"),
+    url(r'^bug/', include(bug_urls)),
 ]
