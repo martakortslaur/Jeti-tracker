@@ -18,7 +18,8 @@ from django.contrib import admin
 from accounts.views import index, logout, login, registration, user_profile
 from accounts import urls as accounts_urls
 from bug.views import add_bug
-from features.views import add_feature
+from features.views import features
+from cart import urls as urls_cart
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -29,5 +30,6 @@ urlpatterns = [
     url(r'^accounts/profile/$', user_profile, name="profile"),
     url(r'^accounts/', include(accounts_urls)),
     url(r'^bug/add_bug', add_bug, name="add_bug"),
-    url(r'^features/add_feature', add_feature, name="add_feature"),
+    url(r'^features/features', features, name="features"),
+    url(r'^cart/', include(urls_cart)),
 ]

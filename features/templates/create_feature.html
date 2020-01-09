@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load bootstrap_tags %}
+{% load static %}
+{% block title %}Create Feature{% endblock %}
+{% block content %}
+<div class="row form-row">
+    <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
+        <h1> Request a Feature </h1>
+        <!--Form to allow users request a new feature-->
+        <form method="POST">
+            {% csrf_token %}
+            {{ form | as_bootstrap }}
+            <button type="submit" class="btn btn-feature">Submit</button>
+            <a class="btn btn-cancel" onclick="history.go(-1)">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

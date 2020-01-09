@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect, reverse
 
-
 def view_cart(request):
     """A View that renders the cart contents page"""
     return render(request, "cart.html")
@@ -35,3 +34,4 @@ def adjust_cart(request, id):
     
     request.session['cart'] = cart
     return redirect(reverse('view_cart'))
+
