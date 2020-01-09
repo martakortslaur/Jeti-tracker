@@ -32,9 +32,9 @@ def show_bug(request):
     """
     bug = Bug.objects.order_by('-posted_on').all()
     paginator = Paginator(bug, 8)
-    page = request.GET.get('page')
-    bug = paginator.get_page(page)
-    return render(request, 'bug/show_bug.html', {'bug': bug})
+    page = request.GET.get('page', 1)
+    bug = paginator.page(page)
+    return render(request, 'show_bug.html', {'bug': bug})
 
 
 @login_required()
@@ -48,7 +48,7 @@ def bug_description(request, pk):
     bug.views += 1
     bug.save()
     comments = Comment.objects.filter(bug=bug)
-    return render(request, "bug/bugdescription.html",
+    return render(request, "bugdescription.html",
                   {
                      'bug': bug, 'comments': comments
                    })
