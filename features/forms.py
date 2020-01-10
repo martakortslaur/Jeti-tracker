@@ -5,4 +5,4 @@ from .models import Feature
 class AddFeatureForm(forms.ModelForm):
     class Meta:
         model = Feature
-        fields = ('name',)
+        fields = ('name', 'details')

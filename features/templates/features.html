@@ -9,10 +9,10 @@
 <div class="container">
 	<div class="row">
 		<div class="col-12">
-			{% for feature in features %}
+			{% for feature in feature %}
 			<div class="card feature-card">
 				<div class="card-body">
-					<a class="card-title" href="{% url 'feature_description' feature.id %}">
+					<a class="card-title" href="{% url 'get_features' %}">
 						{% if feature.phase_of_development == 'Doing' %}
 						<span class="badge badge-done">{{ feature.phase_of_development }}</span>
 						{% elif feature.phase_of_development == 'Done' %}
@@ -21,6 +21,7 @@
 						<span class="badge badge-todo">{{ feature.phase_of_development }}</span>
 						{% endif %}
 						{{ feature.name }}
+                        {{ feature.details }}
 					</a>
 					<span class="vote-number">{{feature.upvote }} <i class="far fa-thumbs-up"></i></span>
 					<p class="text-muted">posted: {{ feature.posted_on|naturaltime }} by {{ feature.requested_by }}

@@ -8,8 +8,11 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-                        {% csrf_token %}
-                {{ form | as_bootstrap}}
+                        <!-- {% csrf_token %}
+                {{ form | as_bootstrap}} -->
+
+            <a class="btn btn-primary back-btn" href="{% url 'show_bug' %}">Back</a>
+
             {% url 'bug_description' id=bug.id %}
             <div class="card description-card">
                 <h3 class="card-title">
