@@ -7,18 +7,15 @@ from .forms import AddFeatureForm
 
 @login_required()
 def get_features(request):
-    features = Feature.objects.order_by('requested_by_id').all()
-    paginator = Paginator(features, 8)
+    feature = Feature.objects.order_by('requested_by_id').all()
+    paginator = Paginator(feature, 15)
     page = request.GET.get('page', 1)
-    features = paginator.page(page)
-    return render(request, 'features.html', {'features': features})
+    feature = paginator.page(page)
+    return render(request, 'features.html', {'feature': feature})
 
 @login_required()
 def create_feature(request):
-    """
-    A view that renders a form to allow
-    a user to request a feature.
-    """
+
     if request.method == "POST":
         form = AddFeatureForm(request.POST)
         if form.is_valid():

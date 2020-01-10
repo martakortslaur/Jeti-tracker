@@ -1,17 +1,21 @@
 {% extends 'base.html' %}
 {% load bootstrap_tags %}
+{% load static %}
+
 {% block title %} Add a Bug{% endblock %}
+
 {% block content %}
-    <div class="row form-row">
-        <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
-            <h1> Please Add a New Bug </h1>
-           
-            <form method="POST">
-                {% csrf_token %}
-                {{ form | as_bootstrap}}
-                <button type="submit" class="btn btn-bug">Submit</button>
-                <a class="btn btn-cancel" onclick="history.go(-1)">Cancel</a>
-            </form>
-        </div>
-    </div>
+<div class="container">
+	<div class="row">
+		<div class="col-12">
+			<h1> Please Add a New Bug </h1>
+			<form method="POST">
+				{% csrf_token %}
+				{{ form | as_bootstrap}}
+				<button type="submit" class="btn btn-bug">Submit</button>
+				<a class="btn btn-cancel" onclick="history.go(-1)">Cancel</a>
+			</form>
+		</div>
+	</div>
+</div>
 {% endblock %}

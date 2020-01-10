@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import bug
+from .models import Bug, Comment
 
-admin.site.register(bug)
+admin.site.register(Bug)
+admin.site.register(Comment)
 

@@ -1,54 +1,47 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from django.contrib.auth.models import User
 from django.urls import reverse, reverse_lazy
 from django.core.paginator import Paginator
-from .models import bug
-from .forms import AddBugForm
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Bug, Comment
+from .forms import AddBugForm, AddBugCommentForm
 
 @login_required()
 def add_bug(request):
-    """
-    Creates a view that allows a user to submit
-    bug report
-    """
+
     if request.method == "POST":
         form = AddBugForm(request.POST)
         if form.is_valid():
             bug = form.save(commit=False)
             bug.author = request.user
             bug.save()
+        
             return redirect('bug_description', pk=bug.pk)
+            # return  redirect(reverse('bug_description', kwargs={'pk': bug.pk}))
+        
     else:
         form = AddBugForm()
     return render(request, "bug/addbug.html", {"form": form})
 
 @login_required()
 def show_bug(request):
-    """
-    This view will return a list of all
-    bugs in date order and display them on the
-    'allbugs' template. Pagination is used to
-    display eight bugs per page.
-    """
-    bug = Bug.objects.order_by('-posted_on').all()
-    paginator = Paginator(bug, 8)
+
+    bug = Bug.objects.order_by('author').all()
+    paginator = Paginator(bug, 100)
     page = request.GET.get('page', 1)
     bug = paginator.page(page)
-    return render(request, 'show_bug.html', {'bug': bug})
+    return render(request, 'bug/show_bug.html', {'bug': bug})
 
 
 @login_required()
 def bug_description(request, pk):
-    """
-    This view allows a user to click on a particular
-    bug to find out more details about it and add a
-    comment
-    """
+
     bug = get_object_or_404(Bug, pk=pk)
     bug.views += 1
     bug.save()
     comments = Comment.objects.filter(bug=bug)
-    return render(request, "bugdescription.html",
+    return render(request, "bug/bugdescription.html",
                   {
                      'bug': bug, 'comments': comments
                    })

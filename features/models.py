@@ -3,9 +3,7 @@ from django.contrib.auth.models import User
 
 
 class Feature(models.Model):
-    """
-    Model for a single feature.
-    """
+
     name = models.CharField(max_length=100)
     details = models.TextField()
 

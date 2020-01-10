@@ -36,15 +36,11 @@ element so I would say h1 and then inside of there I would say block""" -->
 				{% if user.is_authenticated %}
 				<li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">Profile
 						<span class="sr-only">(current)</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'add_bug' %}">Bugs</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'get_features' %}">Features</a></li>
-				<li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'show_bug' %}">All Bugs</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'add_bug' %}">Add a Bug</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'get_features' %}">All Features</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'create_feature' %}">Add a Feature</a></li>
 
-              
-				{% else %}
-				<li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
-				<li class="nav-item"><a class="nav-link" href="{% url 'registration' %}">Register</a></li>
-				{% endif %}
                 <li>
                         <a href="{% url 'view_cart' %}">
                             <i class="fa fa-shipping-cart"></i>Cart
@@ -52,7 +48,14 @@ element so I would say h1 and then inside of there I would say block""" -->
                             <label class="badge badge-warning">{{ product_count }}</label>
                             {% endif %}
                         </a>
-                    </li>
+                </li>
+              	<li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+
+				{% else %}
+				<li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+				<li class="nav-item"><a class="nav-link" href="{% url 'registration' %}">Register</a></li>
+				{% endif %}
+
 			</ul>
 		<!-- </div> -->
 	</nav>

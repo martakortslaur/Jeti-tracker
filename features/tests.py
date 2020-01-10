@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Features
+from .models import Feature
 
 .
 class ProductTests(TestCase):
