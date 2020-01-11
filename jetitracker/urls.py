@@ -22,6 +22,7 @@ from bug import urls as bug_urls
 from features.views import create_feature, get_features
 from features import urls as urls_features
 from cart import urls as urls_cart
+from checkout import urls as urls_checkout
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -39,4 +40,5 @@ urlpatterns = [
     url(r'^features/get_features', get_features, name="get_features"),
     url(r'^cart/', include(urls_cart)),
     url(r'^features/', include(urls_features)),
+    url(r'^chekout/', include(urls_checkout)),
 ]
