@@ -8,6 +8,16 @@ from .models import Bug, Comment
 from .forms import AddBugForm, AddBugCommentForm
 
 @login_required()
+def show_bug(request):
+
+    bug = Bug.objects.order_by('author').all()
+    paginator = Paginator(bug, 100)
+    page = request.GET.get('page', 1)
+    bug = paginator.page(page)
+    return render(request, 'bug/show_bug.html', {'bug': bug})
+    
+    
+@login_required()
 def add_bug(request):
 
     if request.method == "POST":
@@ -24,14 +34,7 @@ def add_bug(request):
         form = AddBugForm()
     return render(request, "bug/addbug.html", {"form": form})
 
-@login_required()
-def show_bug(request):
 
-    bug = Bug.objects.order_by('author').all()
-    paginator = Paginator(bug, 100)
-    page = request.GET.get('page', 1)
-    bug = paginator.page(page)
-    return render(request, 'bug/show_bug.html', {'bug': bug})
 
 
 @login_required()
@@ -45,3 +48,10 @@ def bug_description(request, pk):
                   {
                      'bug': bug, 'comments': comments
                    })
+
+@login_required()
+def toggle_status(request, id):
+    bug = get_object_or_404(Bug, pk=id)
+    bug.done = not bug.done
+    bug.save()
+    return redirect(show_bug)

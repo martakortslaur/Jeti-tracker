@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
+    
 class Bug(models.Model):
 
     Done = 'Done'
@@ -13,7 +13,8 @@ class Bug(models.Model):
         (ToDo, 'ToDo'),
         ]
 
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, blank=False)
+    done = models.BooleanField(blank=False, default=False)
     details = models.TextField()
     fix_status = models.CharField(
                                   max_length=6,

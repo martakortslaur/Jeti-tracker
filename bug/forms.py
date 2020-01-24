@@ -6,7 +6,7 @@ class AddBugForm(forms.ModelForm):
 
     class Meta:
         model = Bug
-        fields = ('title', 'details')
+        fields = ('title', 'details', 'done',)
 
 class AddBugCommentForm(forms.ModelForm):
 
