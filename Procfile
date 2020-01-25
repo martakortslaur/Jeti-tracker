@@ -1,1 +1,1 @@
-web: gunicorn ecommerce.wsgi:application
+web: gunicorn jetitracker.wsgi:application
