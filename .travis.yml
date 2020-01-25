@@ -3,4 +3,4 @@ python:
 - "2.7.16"
 install: "pip install -r requirements.txt"
 script:
-- SECRET_KEY= /manage.py test
+- SECRET_KEY="misiganes" ./manage.py test
