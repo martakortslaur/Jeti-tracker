@@ -1,1 +1,1 @@
-web: gunicorn --log-file=- jetitracker.wsgi:application
+web: gunicorn jetitracker.wsgi:application
