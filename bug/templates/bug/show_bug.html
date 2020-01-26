@@ -3,7 +3,7 @@
 {% load humanize %}
 {% block title %} All Bugs{% endblock %}
 {% block content %}
-<div class="switch">
+<!-- <div class="switch">
   <label>
     Off
     <input type="checkbox">
@@ -36,10 +36,10 @@
             </tr>
             {% empty %}
             <p>You have nothing to do.</p>
-            {% endfor %}
+            {% endfor %} -->
 
 
-<!-- <div class="container">
+<div class="container">
 	<div class="row">
 		<div class="col-6">
 
@@ -69,14 +69,14 @@
             {% empty %}
             <p>You have nothing to do.</p>
             {% endfor %}
-            </table> -->
+            </table>
 
 
 <!-- FIRST THING TO DO WHEN CREATING A NEW ITEM Pointing to a an url IN THE URLS PATTERNS IN THE
 MAIN URLS.PY FILE(THER EIS ALSO TO WRITE THE  TASSSK CREATE_NEW_FILE), THEN CREATE A NEW HTML FILE, YHEN ON VIEWS.PY  return for
 that request for that new html file -->
 
-            <!-- <a href="add_bug"> Add a bug you have noticed here or want to fix</a> -->
+            <a href="add_bug"> Add a bug you have noticed here or want to fix</a>
 
 
 			<!-- {% for bug in bug %}
