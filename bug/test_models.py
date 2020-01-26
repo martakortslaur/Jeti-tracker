@@ -4,7 +4,7 @@ from .models import Bug, Comment
 
 class BugModelTest(TestCase):
     def test_str(self):
-        bug = bug(title='Yet another one')
+        bug = Bug(title='Yet another one')
         self.assertEqual(str(bug), bug.title)
 
 class CommentModelTest(TestCase):

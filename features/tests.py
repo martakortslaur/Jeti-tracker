@@ -1,7 +1,7 @@
 from django.test import TestCase
 from .models import Feature
 
-.
+
 class ProductTests(TestCase):
     """
     Here we'll define the tests that we'll run against our

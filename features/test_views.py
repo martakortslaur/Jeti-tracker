@@ -33,7 +33,7 @@ class TestFeatureViews(TestCase):
     def test_get_features(self):
         response = self.c.get('/features/get_features/')
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'features/features.html')
+        self.assertTemplateUsed(response, 'features.html')
 
 
     def test_create_feature_page(self):
@@ -41,7 +41,7 @@ class TestFeatureViews(TestCase):
         response = self.c.get('/features/create_feature/')
         self.assertEqual(response.status_code, 200)
         self.assertTrue(isinstance(feature, Feature))
-        self.assertTemplateUsed(response, 'features/create_feature.html')
+        self.assertTemplateUsed(response, 'create_feature.html')
 
     def test_POST_create_feature_page(self):
         response = self.client.post("/features/create_feature/", {
