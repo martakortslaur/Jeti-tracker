@@ -1,1 +1,1 @@
-[![Build Status](https://travis-ci.com/martakortslaur/Issue-tracker.svg?branch=master)](https://travis-ci.com/martakortslaur/Issue-tracker)
+[![Build Status](https://travis-ci.com/martakortslaur/Jeti-tracker.svg?branch=master)](https://travis-ci.com/martakortslaur/Jeti-tracker)
