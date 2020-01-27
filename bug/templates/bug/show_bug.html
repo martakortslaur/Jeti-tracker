@@ -48,6 +48,7 @@
 
             {% for bug in bug %}
             <tr>
+            <a class="card-title" href="{% url 'bug_description' bug.id %}"></a>
                 {% if bug.done %}
                 <td><strike>{{ bug.title }}</strike></td>
                 {% else %}
@@ -60,11 +61,11 @@
                     </form>
                 </td>
 
-                <td>
+                <!-- <td>
                     <form method="GET" action="edit/{{ bug.id }}">
                         <input type="submit" value="Edit">
                     </form>
-                </td>
+                </td> -->
             </tr>
             {% empty %}
             <p>You have nothing to do.</p>

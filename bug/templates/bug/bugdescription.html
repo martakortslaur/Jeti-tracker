@@ -8,12 +8,11 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-                        <!-- {% csrf_token %}
-                {{ form | as_bootstrap}} -->
+
 
             <a class="btn btn-primary back-btn" href="{% url 'show_bug' %}">Back</a>
 
-            {% url 'bug_description' id=bug.id %}
+           
             <div class="card description-card">
                 <h3 class="card-title">
                     {% if bug.fix_status == 'Doing' %}
@@ -27,7 +26,7 @@
                     
                 </h3>
                     {% if request.user == bug.author and bug.fix_status == 'ToDo'%}
-                        <p class="card-text">{{bug.details}} <a href="{% url 'edit_bug' bug.id %}"><i class="fas fa-edit"></i></a>
+                        <p class="card-text">{{bug.details}} <i class="fas fa-edit"></i>
                         <i class="far fa-trash-alt" data-toggle="modal" data-target="#deleteBugModal{{bug.id}}"></i> 
                         </p>
                     {% else %}
@@ -60,8 +59,8 @@
                             <p class="card-text">{{comment.comment}}</p>
                         {% endif %}
                     </div>
-                </div>
+                    {% endfor %}
+                </div> 
         </div>
     </div>
-   
 {% endblock %}

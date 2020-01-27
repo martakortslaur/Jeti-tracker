@@ -26,9 +26,9 @@ def add_bug(request):
             bug = form.save(commit=False)
             bug.author = request.user
             bug.save()
-        
-            return redirect('bug_description', pk=bug.pk)
-            # return  redirect(reverse('bug_description', kwargs={'pk': bug.pk}))
+
+            return redirect('bug_description', id=bug.pk)
+            
         
     else:
         form = AddBugForm()
@@ -38,9 +38,9 @@ def add_bug(request):
 
 
 @login_required()
-def bug_description(request, pk):
+def bug_description(request, id):
 
-    bug = get_object_or_404(Bug, pk=pk)
+    bug = get_object_or_404(Bug, pk=id)
     bug.views += 1
     bug.save()
     comments = Comment.objects.filter(bug=bug)
