@@ -43,11 +43,3 @@ class UserRegistrationForm(UserCreationForm):
             raise ValidationError("Passwords must match")
         
         return password2
-
-#     next thing that we need to do is create an inner
-# class an inner class is a class that we can use that will provide just some
-# information about this form these are called meta classes and Django
-# usually uses them internally to determine things about the class but
-# we can also use it to specify the model that we want store information in and we
-# want we want to use it to specify the fields that we're going to expose which
-# our email, username, password1 and password2

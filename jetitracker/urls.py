@@ -15,11 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from accounts.views import index, logout, login, registration, user_profile
-from accounts import urls as accounts_urls
-from bug.views import add_bug, show_bug
-from bug import urls as bug_urls
-from features.views import create_feature, get_features
+from django.views import static
+from accounts.views import index
+from accounts import urls as urls_accounts
+from bug import urls as urls_bug
 from features import urls as urls_features
 from cart import urls as urls_cart
 from checkout import urls as urls_checkout
@@ -27,17 +26,9 @@ from checkout import urls as urls_checkout
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index, name="index"),
-    url(r'^accounts/logout/$', logout, name="logout"),
-    url(r'^accounts/login/$', login, name="login"),
-    url(r'^accounts/register/$', registration, name="registration"),
-    url(r'^accounts/profile/$', user_profile, name="profile"),
-    url(r'^accounts/', include(accounts_urls)),
-    url(r'^bug/add_bug', add_bug, name="add_bug"),
-    url(r'^bug/show_bug', show_bug, name="show_bug"),
-    url(r'^bug/', include(bug_urls)),
-    url(r'^features/create_feature', create_feature, name="create_feature"),
-    url(r'^features/get_features', get_features, name="get_features"),
+    url(r'^accounts/', include(urls_accounts)),
+    url(r'^bug/', include(urls_bug)),
     url(r'^cart/', include(urls_cart)),
     url(r'^features/', include(urls_features)),
-    url(r'^chekout/', include(urls_checkout)),
+    url(r'^checkout/', include(urls_checkout)),
 ]

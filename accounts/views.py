@@ -27,19 +27,30 @@ def login(request):
 
     if request.user.is_authenticated:
         return redirect(reverse('index'))
+
     if request.method == "POST":
+
+        print("Entering POST")
         login_form = UserLoginForm(request.POST)
 
         if login_form.is_valid():
+
+            print("Form is valid")
             user = auth.authenticate(username=request.POST['username'],
-                                    password=request.POST['password'])
-            messages.success(request, "You have successfully logged in!")
+                                     password=request.POST['password'])
+            
 
             if user:
+                print("user is valid")
+                messages.success(request, "You have successfully logged in!")
                 auth.login(user=user, request=request)
+                print("about to redirect to index")
                 return redirect(reverse('index'))
+
             else:
+                print("user was not valid")
                 login_form.add_error(None, "Your username or password is incorrect")
+
     else:
         login_form = UserLoginForm()
     return render(request, 'accounts/login.html', {'login_form': login_form})

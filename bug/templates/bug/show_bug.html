@@ -43,7 +43,7 @@
 	<div class="row">
 		<div class="col-6">
 
-        <h1>Current Bugs I need to Solve</h1>
+        <h1>Current Bugs I need to Solve, click toggle if the bug is solved</h1>
                 <table>
 
             {% for bug in bug %}
@@ -52,7 +52,12 @@
                 {% if bug.done %}
                 <td><strike>{{ bug.title }}</strike></td>
                 {% else %}
-                <td>{{ bug.title }}</td>
+                <td>{{ bug.id }}</td>
+                <td>{{ bug.details }}</td>
+                <td>{{ bug.author }}</td>
+                <td>{{ bug.views }}</td>
+                <td>{{ bug.status }}</td>
+                <td>{{ bug.comment }}</td>
                 {% endif %}
                 <td>
                     <form method="POST" action="toggle/{{ bug.id }}">
@@ -67,9 +72,9 @@
                     </form>
                 </td> -->
             </tr>
-            {% empty %}
+            <!-- {% empty %}
             <p>You have nothing to do.</p>
-            {% endfor %}
+            {% endfor %} -->
             </table>
 
 

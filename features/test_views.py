@@ -14,7 +14,7 @@ class TestFeatureViews(TestCase):
     def setUp(self):
         """
         Set up method for unit testing the features app.
-        Instance of User, Feature and Comment created
+        Instance of User and Feature created
         here and called in tests.
         """
         user = User.objects.create_user(
@@ -22,13 +22,14 @@ class TestFeatureViews(TestCase):
             'test_user@mail.com',
             'example'
         )
+
         user.save()
         feature = Feature.objects.create(
             name='New feature',
-            details='Yet another one',
+            details='New feature detail',
             requested_by=user)
         feature.save()
-        logged_in = self.c.login(username='test_user', password='example')
+        logged_in = self.c.login(username='testing', password='test')
 
     def test_get_features(self):
         response = self.c.get('/features/get_features/')
@@ -45,8 +46,8 @@ class TestFeatureViews(TestCase):
 
     def test_POST_create_feature_page(self):
         response = self.client.post("/features/create_feature/", {
-            'name': 'A new feature',
-            'details': 'This would be a good feature'
+            'name': 'Requesting a feature',
+            'details': 'A new feature'
             }
         )
         self.assertEqual(response.status_code, 302)

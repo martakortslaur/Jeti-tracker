@@ -1,27 +1,35 @@
 from django.db import models
+from django.utils import timezone
 from django.contrib.auth.models import User
 
 
 class Feature(models.Model):
 
-    name = models.CharField(max_length=100)
-    details = models.TextField()
+    WAITING = 'Waiting'
+    INPROGRESS = 'In Progress'
+    COMPLETED = 'Completed'
+    STATUS_CHOICES = ((WAITING, 'Waiting'),
+                      (INPROGRESS, 'In Progress'), (COMPLETED, 'Completed'))
 
-    requested_by = models.ForeignKey(User, on_delete=models.CASCADE)
-    Done = 'Done'
-    Doing = 'Doing'
-    ToDo = 'ToDo'
-    PHASE_OF_DEVELOPMENT_CHOICES = [
-        (Done, 'Done'),
-        (Doing, 'Doing'),
-        (ToDo, 'ToDo'),
-        ]
-    phase_of_development = models.CharField(max_length=6,
-                                            choices=PHASE_OF_DEVELOPMENT_CHOICES,
-                                            default='ToDo')
-    upvote = models.IntegerField(default=0)
-    vote_price = models.DecimalField(max_digits=4,
-                                     decimal_places=2, default=10.00)
+    name = models.CharField(max_length=50, blank=False)
+    details = models.TextField(blank=False)
+    username = models.ForeignKey(User, default=None)
+    created_date = models.DateTimeField(blank=True, default=None, null=True)
+    waiting_date = models.DateTimeField(blank=True, default=None, null=True)
+    in_progress_date = models.DateTimeField(
+        blank=True, default=None, null=True)
+    completion_date = models.DateTimeField(blank=True, default=None, null=True)
+    views = models.IntegerField(default=0)
+    upvotes = models.IntegerField(default=0)
+    status = models.CharField(
+        max_length=40, choices=STATUS_CHOICES, default=WAITING)
 
     def __str__(self):
         return self.name
+
+class UpvoteFeature(models.Model):
+    upvoted_feature = models.ForeignKey(Feature, default=None)
+    user = models.ForeignKey(User, default=None)
+
+    def __str__(self):
+        return str(self.user)
