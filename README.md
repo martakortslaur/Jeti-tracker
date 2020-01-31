@@ -98,9 +98,9 @@ In development.
 * Postgres/ Sqlite3
 
 ## Deployment
-Version control was carried out entirely using git. The GitHub repository can be found [here]()
+Version control was carried out entirely using git. The GitHub repository can be found [here](https://github.com/martakortslaur/Jeti-tracker)
 
-The project was hosted on Heroku. The running application is available [here]()
+The project was hosted on Heroku. The running application is available [here](https://jeti-tracker.herokuapp.com/)
 
 #### To deploy to Heroku I took the following steps:
 * Created a requirements.txt file to hold a list of the dependencies needed to run the project
