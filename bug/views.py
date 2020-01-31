@@ -3,19 +3,27 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.urls import reverse, reverse_lazy
 from django.core.paginator import Paginator,  EmptyPage, PageNotAnInteger
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from .models import Bug, Comment
 from .forms import AddBugForm, CommentForm
 
 
+def allbugs(request):
+
+    bug = Bug.objects.all()
+
+    return render(request, 'bug/show_bug.html', {'bugs': bug})
+
+
 @login_required()
-def show_bug(request):
+def show_bug(request, id):
 
     bug = Bug.objects.all().order_by('author')
     paginator = Paginator(bug, 100)
     page = request.GET.get('page', 1)
     bug = paginator.page(page)
-    return render(request, 'bug/show_bug.html',  {'bug': bug})   
+
+    return render(request, 'bug/bug_description.html',  {'bugs': bug})   
 
 
 @login_required()
@@ -53,7 +61,7 @@ def add_comment_bug(request, id):
             
             return redirect('show_bug', pk=bug.pk)
     else:
-        form = AddBugCommentForm()
+        form = CommentForm()
     return render(request, "bug/bugcomment.html", {"form": form})
 
 
@@ -72,7 +80,7 @@ def bug_description(request, id):
 
 
 @login_required()
-def toggle_status(request, id):
+def toggle_status(request, pk=id):
     bug = get_object_or_404(Bug, pk=id)
     if  bug.status == "done":
         bug.status = "doing"
@@ -80,4 +88,4 @@ def toggle_status(request, id):
         bug.status = "done"
 
     bug.save()
-    return redirect(show_bug)
+    return redirect(show_bug, pk=bug.pk)

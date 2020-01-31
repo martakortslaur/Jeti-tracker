@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load bootstrap_tags %}
+{% load static %}
+
+{% block title %} Add a Bug{% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col-12">
+			<h1>Here are all the bugs </h1>
+                {% if user.is_authenticated %}
+				<li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">Profile
+						<span class="sr-only">(current)</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'show_bug' id=1 %}">All Bugs</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'add_bug' %}">Add a Bug</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'get_features' %}">All Features</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'create_feature' %}">Add a Feature</a></li>
+
+                <li>
+                        <a href="{% url 'view_cart' %}">
+                            <i class="fa fa-shipping-cart"></i>Cart
+                            {% if product_count > 0 %}
+                            <label class="badge badge-warning">{{ product_count }}</label>
+                            {% endif %}
+                        </a>
+			{% endif %}
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -3,40 +3,6 @@
 {% load humanize %}
 {% block title %} All Bugs{% endblock %}
 {% block content %}
-<!-- <div class="switch">
-  <label>
-    Off
-    <input type="checkbox">
-    <span class="lever"></span> On
-  </label>
-</div>
-<div class="container">
-	<div class="row">
-		<div class="col-6">
-
-        <h1>Current Bugs I need to Solve</h1>
-
-            {% for bug in bug %}
-            <div class='switch'>
-            <label>
-            Off
-                {% if bug.done %}
-                <input type='checkbox'>{{ bug.title }}<span class='lever'></span>On
-                {% else %}
-                {{ bug.title }}
-                {% endif %}
-                </label>
-                    
-                    {% csrf_token %}
-                        
-                    <form method="GET" action="edit/{{ bug.id }}">
-                        <input type="submit" value="Edit">
-                    </form>
-                </td>
-            </tr>
-            {% empty %}
-            <p>You have nothing to do.</p>
-            {% endfor %} -->
 
 
 <div class="container">
@@ -46,18 +12,18 @@
         <h1>Current Bugs I need to Solve, click toggle if the bug is solved</h1>
                 <table>
 
-            {% for bug in bug %}
+            {% for bug in bugs %}
             <tr>
-            <!-- <a class="card-title" href="{% url 'bug_description' bug.id %}"></a> -->
+          
                 {% if bug.done %}
-                <td><strike>{{ bug.title }}</strike></td>
+                    <td><strike>{{ bug.title }}</strike></td>
                 {% else %}
-                <td>{{ bug.id }}</td>
-                <td>{{ bug.details }}</td>
-                <td>{{ bug.author }}</td>
-                <td>{{ bug.views }}</td>
-                <td>{{ bug.status }}</td>
-                <td>{{ bug.comment }}</td>
+                    <td><a href="{% url 'show_bug' id=bug.id %}>{{ bug.title }}</a></td>
+                    <td>{{ bug.details }}</td>
+                    <td>{{ bug.author }}</td>
+                    <td>{{ bug.views }}</td>
+                    <td>{{ bug.status }}</td>
+                    <td>{{ bug.comment }}</td>
                 {% endif %}
                 <td>
                     <form method="POST" action="toggle/{{ bug.id }}">
@@ -65,16 +31,15 @@
                         <input type="submit" value="Toggle">
                     </form>
                 </td>
-
-                <!-- <td>
-                    <form method="GET" action="edit/{{ bug.id }}">
-                        <input type="submit" value="Edit">
-                    </form>
-                </td> -->
+                <td>
+                    <a href="{% url 'bug_description' bug.id %}" class="btn btn-comment">View the bug description</a>
+                </td>
+                
+                <td>
+                    <a href="{% url 'add_comment_bug' bug.id %}" class="btn btn-comment">Add Comment</a>
+                </td>
             </tr>
-            <!-- {% empty %}
-            <p>You have nothing to do.</p>
-            {% endfor %} -->
+
             </table>
 
 
@@ -82,25 +47,7 @@
 MAIN URLS.PY FILE(THER EIS ALSO TO WRITE THE  TASSSK CREATE_NEW_FILE), THEN CREATE A NEW HTML FILE, YHEN ON VIEWS.PY  return for
 that request for that new html file -->
 
-            <a href="add_bug"> Add a bug you have noticed here or want to fix</a>
-
-
-			<!-- {% for bug in bug %}
-			<div class="card">
-				<div class="card-body">
-					<a class="card-title" href="{% url 'bug_description' bug.id %}">
-						{% if bug.fix_status == 'Doing' %}
-						<span class="badge badge-done">{{ bug.fix_status }}</span>
-						{% elif bug.fix_status == 'Done' %}
-						<span class="badge badge-doing">{{ bug.fix_status }}</span>
-						{% elif bug.fix_status == 'ToDo' %}
-						<span class="badge badge-todo">{{ bug.fix_status }}</span>
-						{% endif %}
-						{{ bug.title }}
-					</a>
-				</div>
-			</div>
-			{% endfor %} -->
+            {% endfor %}
 		</div>
 	</div>
 </div>

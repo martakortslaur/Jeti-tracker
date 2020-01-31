@@ -22,7 +22,6 @@ class Bug(models.Model):
                                      blank=True,
                                      default=timezone.now
                                     )
-    comment = models.TextField()
 
     def __str__(self):
         return self.title
@@ -32,7 +31,7 @@ class Comment(models.Model):
     bug = models.ForeignKey(
                             Bug,
                             on_delete=models.CASCADE,
-                            related_name='comment'
+                            related_name='comments'
                             )
     created_on = models.DateTimeField(
                                       null=True,
