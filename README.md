@@ -71,21 +71,19 @@ A user can view a list of features that other users have requested. The colour-c
 A user can submit a feature request by clicking on the 'Request Feature' button on the top right of the list of features. When this button is clicked the user is taken to a form where they fill in details of the feature that they would like to see added to the site. The request is then added to the top of the list on the Features page. It is free to request a feature.
 
 * View Feature Details
-This can be done by clicking on the name of any feature. A user is then taken to a page where they can view more details about a feature and upvote any feature that has not yet been developed.
+In development.
 
 * Vote for a Feature
-To vote for a feature a user should click on the thumbs-up icon to the right of the feature title. When this icon is clicked a pop-up modal appears informing the user that there is a fee of €10 per vote. If the user agrees to this and clicks on the 'Vote' button, then that feature is added to their shopping cart. Each feature can only be added once, but a user can add as many features as they wish.
+In development.
 
-* Edit / Delete Feature
-A user can edit or delete a Feature by clicking on the relevant icons beside the description text. A feature can only be deleted while it is in the 'to do' phase of development. Deleting a feature will also remove any associated comments. 
+* Delete Feature
+In development.
 
 * View Cart
-Clicking on the cart icon in the navbar will allow a user to view their cart. It is here that the user will see a list of the features they have voted for. It is possible to adjust the quantity of votes that a user wishes to purchase for each feature. A maximum of ten votes can be purchased per feature. If the user decreases the quantity to zero that item is removed from the cart.
-When a user is satisfied with the number of items in their cart they can click on the 'Checkout Now' button underneath their shopping cart. The user is then taken to a checkout page.
+In development.
 
 * Checkout
- On the checkout page the user should fill in a form detailing their full-name, credit card number (Stripe recommends a test number of 4242 4242 4242 4242, do not enter any real credit card information), an expiry month and year, a CVV number (three random digits) and country of residence. 
- The user's shopping cart is also visible here. Upon completion the user should click on the Pay Now button where they will be re directed back to the Features page and can view the increase in up votes. 
+ In development.
 
 ## Technologies Used
 * HTML
