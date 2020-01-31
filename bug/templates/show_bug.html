@@ -18,7 +18,7 @@
                 {% if bug.done %}
                     <td><strike>{{ bug.title }}</strike></td>
                 {% else %}
-                    <td><a href="{% url 'show_bug' id=bug.id %}>{{ bug.title }}</a></td>
+                    <td><a href="{% url 'show_bug' id=bug.pk %}">{{ bug.title }}</a></td>
                     <td>{{ bug.details }}</td>
                     <td>{{ bug.author }}</td>
                     <td>{{ bug.views }}</td>
@@ -30,9 +30,6 @@
                     {% csrf_token %}
                         <input type="submit" value="Toggle">
                     </form>
-                </td>
-                <td>
-                    <a href="{% url 'bug_description' bug.id %}" class="btn btn-comment">View the bug description</a>
                 </td>
                 
                 <td>

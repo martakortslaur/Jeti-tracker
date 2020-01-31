@@ -75,10 +75,30 @@ element so I would say h1 and then inside of there I would say block""" -->
 		{% endfor %}
 	</div>
 	{% endif %} {% block content %}{% endblock %}
-
-	<!-- Inside of our base.html page we're going to create
-another block at the end just before our closing body tag called content and this
-is going to be the kind of the main kind of content area for our project  -->
+    <footer class="container-fluid">
+			<div  id="footer-details" class="col-sm-10 offset-sm-1 offset-md-3 col-md-6 offset-lg-4 col-lg-4 offset-xl-4 col-xl-4">
+				<ul class="list-inline social-links">
+					<li class="list-inline-item">
+						<a target="_blank" href="https://github.com/martakortslaur">
+							<i class="fab fa-github" aria-hidden="true"></i>
+							<span class="sr-only">Github</span>
+						</a>
+					</li>
+					<li class="list-inline-item">
+						<a target="_blank" href="https://www.linkedin.com/in/marta-korts-laur-48239180/">
+							<i class="fab fa-linkedin" aria-hidden="true"></i>
+							<span class="sr-only">LinkedIn</span>
+						</a>
+					</li>
+					<li class="list-inline-item">
+						<a target="_blank" href="https://www.facebook.com/marta.kortslaur">
+							<i class="fab fa-facebook" aria-hidden="true"></i>
+							<span class="sr-only">Facebook</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+	</footer>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
 	</script>

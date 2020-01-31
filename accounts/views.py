@@ -6,7 +6,7 @@ from accounts.forms import UserLoginForm, UserRegistrationForm
 
 def index(request):
 
-    return render(request,  'accounts/index.html')
+    return render(request,  'index.html')
 
 
 def logout(request):
@@ -53,7 +53,7 @@ def login(request):
 
     else:
         login_form = UserLoginForm()
-    return render(request, 'accounts/login.html', {'login_form': login_form})
+    return render(request, 'login.html', {'login_form': login_form})
 
 
 def registration(request):
@@ -76,11 +76,11 @@ def registration(request):
                 messages.error(request, "Unable to register your account at this time")
     else:
         registration_form = UserRegistrationForm()
-    return render(request, 'accounts/registration.html', {
+    return render(request, 'registration.html', {
         "registration_form": registration_form})
 
 def user_profile(request):
 
     user = User.objects.get(email=request.user.email)
-    return render(request, 'accounts/profile.html', {"profile": user})
+    return render(request, 'profile.html', {"profile": user})
 

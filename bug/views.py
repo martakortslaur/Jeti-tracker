@@ -10,20 +10,20 @@ from .forms import AddBugForm, CommentForm
 
 def allbugs(request):
 
-    bug = Bug.objects.all()
+    bug = Bug.objects.all().order_by('author')
 
-    return render(request, 'bug/show_bug.html', {'bugs': bug})
+
+    return render(request, 'show_bug.html', {'bugs': bug})
 
 
 @login_required()
 def show_bug(request, id):
 
-    bug = Bug.objects.all().order_by('author')
-    paginator = Paginator(bug, 100)
-    page = request.GET.get('page', 1)
-    bug = paginator.page(page)
+    bug = get_object_or_404(Bug, pk=id)
 
-    return render(request, 'bug/bug_description.html',  {'bugs': bug})   
+    print(bug)
+
+    return redirect('bug_description', {'bugs': bug})  
 
 
 @login_required()
@@ -40,7 +40,7 @@ def add_bug(request):
             
     else:
         form = AddBugForm()
-    return render(request, "bug/addbug.html", {"form": form})
+    return render(request, "addbug.html", {"form": form})
 
 
 @login_required
@@ -48,7 +48,6 @@ def add_comment_bug(request, id):
  
     bug = get_object_or_404(Bug, pk=id)
 
-    # comment_form = CommentForm(request.POST, request.FILES)
 
     if request.method == "POST":
         form = CommentForm(request.POST)
@@ -59,10 +58,10 @@ def add_comment_bug(request, id):
             comment.bug = bug
             comment.save()
             
-            return redirect('show_bug', pk=bug.pk)
+            return redirect('show_bug', id=bug.pk)
     else:
         form = CommentForm()
-    return render(request, "bug/bugcomment.html", {"form": form})
+    return render(request, "bugcomment.html", {"form": form})
 
 
 @login_required()
@@ -71,16 +70,16 @@ def bug_description(request, id):
     bug = get_object_or_404(Bug, pk=id)
     bug.views += 1
     bug.save()
-    comment = Comment.objects.filter(bug=bug)
+    comment = Comment.objects
     form = CommentForm(request.POST)
-    return render(request, "bug/bugdescription.html",
+    return render(request, "bugdescription.html",
                   {
-                     'bug': bug, 'comment': comment, 'form': form
+                     'bugs': bug, 'comment': comment, 'form': form
                    })
 
 
 @login_required()
-def toggle_status(request, pk=id):
+def toggle_status(request, id):
     bug = get_object_or_404(Bug, pk=id)
     if  bug.status == "done":
         bug.status = "doing"
@@ -88,4 +87,4 @@ def toggle_status(request, pk=id):
         bug.status = "done"
 
     bug.save()
-    return redirect(show_bug, pk=bug.pk)
+    return redirect(show_bug, id=bug.pk)
