@@ -12,6 +12,7 @@
 			{% for feature in feature %}
 			<div class="card feature-card">
 				<div class="card-body">
+                <div class="nav-item"><a class="nav-link" href="{% url 'create_feature' %}">Add a Feature</a></div>
 					<a class="card-title" href="{% url 'get_features' %}">
 						{% if feature.phase_of_development == 'Doing' %}
 						<span class="badge badge-done">{{ feature.phase_of_development }}</span>
@@ -24,8 +25,8 @@
                         {{ feature.details }}
 					</a>
 					<span class="vote-number">{{feature.upvote }} <i class="far fa-thumbs-up"></i></span>
-					<p class="text-muted">posted: {{ feature.posted_on|naturaltime }} by {{ feature.requested_by }}
-						<!--Number of comments and views for a particular feature-->
+					<p class="text-muted">posted: {{ feature.posted_on|naturaltime }} by {{ feature.username }}
+					
 						<span class="comments">{{ feature.comments.count }} <i class="far fa-comment"></i> </span>
 					</p>
 				</div>

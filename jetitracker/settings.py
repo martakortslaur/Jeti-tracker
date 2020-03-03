@@ -28,7 +28,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['8080-dcc3ab65-9650-4f39-9955-cb83e44ff984.ws-eu01.gitpod.io', 'localhost', 'jeti-tracker.herokuapp.com']
 

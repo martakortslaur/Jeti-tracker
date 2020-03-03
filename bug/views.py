@@ -11,8 +11,6 @@ from .forms import AddBugForm, CommentForm
 def allbugs(request):
 
     bug = Bug.objects.all().order_by('author')
-
-
     return render(request, 'show_bug.html', {'bugs': bug})
 
 
@@ -21,9 +19,7 @@ def show_bug(request, id):
 
     bug = get_object_or_404(Bug, pk=id)
 
-    print(bug)
-
-    return redirect('bug_description', {'bugs': bug})  
+    return redirect('bug_description', id=bug.pk)  
 
 
 @login_required()
@@ -36,7 +32,7 @@ def add_bug(request):
             bug.author = request.user
             bug.save()
 
-            return redirect('bug_description', id=bug.pk)
+            return redirect('show_bug', id=bug.pk)
             
     else:
         form = AddBugForm()
@@ -58,7 +54,7 @@ def add_comment_bug(request, id):
             comment.bug = bug
             comment.save()
             
-            return redirect('show_bug', id=bug.pk)
+            return redirect('bug_description', id=bug.pk)
     else:
         form = CommentForm()
     return render(request, "bugcomment.html", {"form": form})
@@ -74,7 +70,7 @@ def bug_description(request, id):
     form = CommentForm(request.POST)
     return render(request, "bugdescription.html",
                   {
-                     'bugs': bug, 'comment': comment, 'form': form
+                     'bug': bug, 'comment': comment, 'form': form
                    })
 
 
