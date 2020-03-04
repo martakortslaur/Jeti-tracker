@@ -7,59 +7,49 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-6" >
+		<div class="col-6">
 			<div>
 				<a class='btn btn-primary inline margin-bottom-20' href="{% url 'add_bug' %}">Add Bug </a>
 			</div>
-
-			<h1>Current Bugs I need to Solve, click toggle if the bug is solved</h1>
-            <div class="card feature-card">
+			
+			<h1>Current Bugs I need to Solve, click TOGGLE button if the bug is solved</h1>
+{% for bug in bugs %}
+			<div class="card feature-card">
 				<div class="card-body">
-			<table>
 
-				{% for bug in bugs %}
-				<tr>
-
-					{% if bug.done %}
-					<td><strike>{{ bug.title }}</strike></td>
-					{% else %}
-					<!-- <td>
-						<a href="{% url 'bug_description' bug.id %}">{{ bug.title }}</a>
-					</td> -->
-					<td>{{ bug.details }}</td>
-					<td>{{ bug.author }}</td>
-					<td>{{ bug.views }}</td>
-					<td>{{ bug.status }}</td>
-					<td>{{ bug.comment }}</td>
-					{% endif %}
-
-
-					<td>
-						<a href="{% url 'add_comment_bug' id=bug.pk %}" class="btn btn-comment">Add Comment</a>
-					</td>
-				</tr>
-
-			</table>
+					<table>
+						<tr>
+							{% if bug.done %}
+							<td><strike>{{ bug.title }}</strike></td>
+							{% else %}
+							<!-- <td>
+                                <a href="{% url 'bug_description' bug.id %}">{{ bug.title }}</a>
+                            </td> -->
+							<td>{{ bug.details }}</td>
+							<td>{{ bug.author }}</td>
+							<td>{{ bug.views }}</td>
+							<td>{{ bug.status }}</td>
+							<td>{{ bug.comment }}</td>
+							{% endif %}
+							<td>
+								<a href="{% url 'add_comment_bug' id=bug.pk %}" class="btn btn-comment">Add Comment</a>
+							</td>
+						</tr>
+					</table>
 				</div>
-            </div>
-            
+			</div>
+
 			<form method="POST" action="toggle/{{ bug.id }}">
 				{% csrf_token %}
 				<input type="submit" value="Toggle">
-            </form>
-			<form method='get' class='inline' action="{% url 'bug_description' bug.id %}">
-				<div class=''>
-					<button type='submit' class=' btn btn-primary inline'>{{ bug.title }}</button>
-				</div>
-			</form>
-
-
-				<!-- FIRST THING TO DO WHEN CREATING A NEW ITEM Pointing to a an url IN THE URLS PATTERNS IN THE
-MAIN URLS.PY FILE(THER EIS ALSO TO WRITE THE  TASSSK CREATE_NEW_FILE), THEN CREATE A NEW HTML FILE, YHEN ON VIEWS.PY  return for
-that request for that new html file -->
-
-				{% endfor %}
+            </form> {% endfor %}
 		</div>
+
 	</div>
 </div>
 {% endblock %}
+<!-- <form method='get' class='inline' action="{% url 'bug_description' bug.id %}">
+				<div class=''>
+					<button type='submit' class=' btn btn-primary inline'>{{ bug.title }}</button>
+				</div>
+			</form> -->

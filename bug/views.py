@@ -54,7 +54,7 @@ def add_comment_bug(request, id):
             comment.bug = bug
             comment.save()
             
-            return redirect('bug_description', id=bug.pk)
+            return redirect('allbugs', id=bug.pk)
     else:
         form = CommentForm()
     return render(request, "bugcomment.html", {"form": form})
@@ -81,6 +81,5 @@ def toggle_status(request, id):
         bug.status = "doing"
     else:
         bug.status = "done"
-
     bug.save()
-    return redirect(show_bug, id=bug.pk)
+    return redirect('show_bug', id=bug.pk)
