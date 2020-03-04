@@ -31,7 +31,6 @@ def add_bug(request):
             bug = form.save(commit=False)
             bug.author = request.user
             bug.save()
-
             return redirect('show_bug', id=bug.pk)
             
     else:
@@ -54,7 +53,7 @@ def add_comment_bug(request, id):
             comment.bug = bug
             comment.save()
             
-            return redirect('allbugs', id=bug.pk)
+            return redirect('show_bug', id=bug.pk)
     else:
         form = CommentForm()
     return render(request, "bugcomment.html", {"form": form})
@@ -72,7 +71,6 @@ def bug_description(request, id):
                   {
                      'bug': bug, 'comment': comment, 'form': form
                    })
-
 
 @login_required()
 def toggle_status(request, id):

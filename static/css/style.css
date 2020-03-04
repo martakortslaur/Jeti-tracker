@@ -11,17 +11,13 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-
-
 }
 
-/* .row {
-    margin: auto;
+.row {
+    margin-bottom: 50px;
 }
 
-.alert{
-    margin-bottom: 0;
-} */
+
 
 .navbar {
   overflow: hidden;
@@ -33,7 +29,6 @@ body {
     margin-top: 2rem;
     padding-bottom: 3rem;
 }
-
 
 .navbar-expand-lg{
     background-color: #003f5c;
@@ -128,31 +123,33 @@ th, td {
 }
 
 .btn-comment{
-    background-color: #2fabf3;
+    background-color: rgb(103, 196, 219);
+    margin-bottom: 2rem;
+
 }
 
 .btn-delete{
-    background-color: #2fabf3; 
+    background-color: #rgb(103, 196, 219); 
 }
 
 .btn-login{
-    background-color: #2fabf3;
+    background-color: rgb(103, 196, 219);
     margin-bottom: 1rem;
 }
 
 .btn-register{
-    background-color: #2fabf3;
+    background-color: rgb(103, 196, 219);
     margin-bottom: 1rem;
 }
 
 .btn-vote{
-    background-color: #2fabf3;
+    background-color: rgb(103, 196, 219);
     float: right;
     margin-bottom: 2rem;
 }
 
 .card{
-    border: 1px solid #40e2ee;
+    border: 1px solid #f3f6f7;
     color: #003f5c;
     margin-top: .5rem;
 }
@@ -164,6 +161,7 @@ th, td {
 
 .feature-card {
     background-color: rgb(175, 174, 194);
+    margin-bottom: 1rem;
 }
 
 .bug-card {

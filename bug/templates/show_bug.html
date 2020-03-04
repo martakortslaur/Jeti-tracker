@@ -11,38 +11,42 @@
 			<div>
 				<a class='btn btn-primary inline margin-bottom-20' href="{% url 'add_bug' %}">Add Bug </a>
 			</div>
-			
+
 			<h1>Current Bugs I need to Solve, click TOGGLE button if the bug is solved</h1>
-{% for bug in bugs %}
+			{% for bug in bugs %}
 			<div class="card feature-card">
 				<div class="card-body">
 
 					<table>
 						<tr>
-							{% if bug.done %}
-							<td><strike>{{ bug.title }}</strike></td>
-							{% else %}
-							<!-- <td>
-                                <a href="{% url 'bug_description' bug.id %}">{{ bug.title }}</a>
-                            </td> -->
+							<th>Title</th>
+							<th>Details</th>
+							<th>Author</th>
+							<th>Views</th>
+							<th>Status</th>
+							<th>Comments</th>
+						</tr>
+						<tr>
+							<td>{{ bug.title }}</td>
 							<td>{{ bug.details }}</td>
 							<td>{{ bug.author }}</td>
 							<td>{{ bug.views }}</td>
 							<td>{{ bug.status }}</td>
 							<td>{{ bug.comment }}</td>
-							{% endif %}
-							<td>
-								<a href="{% url 'add_comment_bug' id=bug.pk %}" class="btn btn-comment">Add Comment</a>
-							</td>
 						</tr>
 					</table>
 				</div>
 			</div>
 
-			<form method="POST" action="toggle/{{ bug.id }}">
+           <form method="POST" action="toggle/{{ bug.id }}">
 				{% csrf_token %}
 				<input type="submit" value="Toggle">
-            </form> {% endfor %}
+            </form>  
+				<div>
+                <a href="{% url 'add_comment_bug' bug.id %}" class="btn btn-comment">Add Comment</a>
+				
+				</div>
+ {% endfor %}
 		</div>
 
 	</div>
