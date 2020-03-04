@@ -11,6 +11,21 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+
+
+}
+
+/* .row {
+    margin: auto;
+}
+
+.alert{
+    margin-bottom: 0;
+} */
+
+.navbar {
+  overflow: hidden;
+  background-color: #333;
 }
 
 .content-container{
@@ -57,6 +72,20 @@ body {
 
 .navbar-toggler{
     color: #dce9f5;
+}
+
+table, td, th {  
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 15px;
 }
 
 .btn,
@@ -137,19 +166,27 @@ body {
     background-color: rgb(175, 174, 194);
 }
 
+.bug-card {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
 .card-body {
     padding: .5rem 1.25rem .3rem 1.25rem;
  }
 
 footer {
-    position: static;
+    position: fixed;
     background-image: linear-gradient(rgba(0,0,0,0),rgb(103, 196, 219));
     width: 100%;
     height: 60px;
-    margin-top: -2px;
+    margin-top: 1000px;
     bottom: 0;
     text-align: center;
     background-color: #434343;
+    left: 0;
+    color: white;
+
 }
 
 footer a {
