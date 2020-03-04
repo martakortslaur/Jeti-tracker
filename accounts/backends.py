@@ -6,7 +6,7 @@ class EmailAuth:
 
     def authenticate(self, username=None, password=None):
         """
-        Get an instance of `User` based off the email and verify the
+        Get an instance of `User` based of the email and verify the
         password
         """
 

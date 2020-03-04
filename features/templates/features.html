@@ -1,42 +1,73 @@
-{% extends 'base.html' %}
-{% load static %}
-{% load humanize %}
+{% extends 'base.html' %} {% block content %}
 
-{% block title %}Features{% endblock %}
+<div class="features-page">
+    <div class="row row-flex">
+        {% for feature in features %}
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 panel-style ">
+            {% if feature.status == "todo" %}
+            <div class="panel panel-danger">
+                {% elif feature.status == "doing" %}
+                <div class="panel panel-warning">
+                    {% else %}
+                    <div class="panel panel-success">
+                        {% endif %}
+                        <div class="panel-heading">Status: {{ feature.status }}</div>
+                        <div class="panel-body">
 
-{% block content %}
-<div class="container">
-	<div class="row">
-		<div class="col-12">
-            <div class="top"><a href="{% url 'create_feature' %}">Add a Feature</a></div>
-		</div>
-	</div>
-</div>
-<div class="container">
-	<div class="row">
-		<div class="col-12">
-			{% for feature in feature %}
-			<div class="card feature-card">
-				<div class="card-body">
-					<a class="card-title" href="{% url 'get_features' %}">
-						{% if feature.phase_of_development == 'Doing' %}
-						<span class="badge badge-done">{{ feature.phase_of_development }}</span>
-						{% elif feature.phase_of_development == 'Done' %}
-						<span class="badge badge-doing">{{ feature.phase_of_development }}</span>
-						{% elif feature.phase_of_development == 'ToDo' %}
-						<span class="badge badge-todo">{{ feature.phase_of_development }}</span>
-						{% endif %}
-						{{ feature.name }}
-                        {{ feature.details }}
-					</a>
-					<span class="vote-number">{{feature.upvote }} <i class="far fa-thumbs-up"></i></span>
-					<p class="text-muted">posted: {{ feature.posted_on|naturaltime }} by {{ feature.username }}			
-						<span class="comments">{{ feature.comments.count }} <i class="far fa-comment"></i> </span>
-					</p>
-				</div>
-			</div>
-			{% endfor %}
-		</div>
-	</div>
+                            <h4 class="card-title">{{ feature.name }}</h4>
+                            <p class="product-description card-text">{{ feature.description|truncatewords:5 }}</p>
+                            <div class="row center">
+                                <div class="col-sm-6">
+                                    <p><a href="{% url 'feature_detail' feature.id %}" class="btn btn-primary"><span>Chat</span></a></p>
+                                </div>
+                                <div class="col-sm-6">
+                                    {% if feature.status == "done" %}
+                                    <!-- Button trigger modal -->
+                                    {% else %}
+                                    <button class="btn btn-success" type="submit" data-toggle="modal" data-target="#addToCartModal{{ feature.id }}"><span>Vote!</span></button> {% endif %}
+                                </div>
+                            </div>
+
+                            <p class="views"><span class="glyphicon glyphicon-eye-open"></span> {{ feature.views }}</p>
+                            <p class="views"><span class="glyphicon glyphicon-ok"></span> {{ feature.upvotes }}</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="addToCartModal{{ feature.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Upvote Feature</h4>
+                            </div>
+                            <div class="modal-body">
+                                You can prioritize your feature and help us in same time. By clicking the Add button, you agree to pay a fee of 10£ for requested feature. We promise always to spend at least 50% of our time working on developing the feature.
+                            </div>
+                            <div class="modal-footer">
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-6 col-md-8 col-lg-8 ">
+
+                                    </div>
+                                    <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                    <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+                                        <form method="post" action="{% url 'add_to_cart' feature.id %}">
+                                            {% csrf_token %}
+                                            <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-plus"></span> Add</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
