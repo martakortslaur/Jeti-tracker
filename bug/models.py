@@ -31,7 +31,7 @@ class Comment(models.Model):
     bug = models.ForeignKey(
                             Bug,
                             on_delete=models.CASCADE,
-                            related_name='comment'
+                            related_name='comments'
                             )
     created_on = models.DateTimeField(
                                       null=True,

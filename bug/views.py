@@ -19,7 +19,7 @@ def show_bug(request, id):
 
     bug = get_object_or_404(Bug, pk=id)
 
-    return redirect('bug_description', id=bug.pk)  
+    return redirect('bug_description', id=bug.pk)
 
 
 @login_required()
@@ -42,10 +42,13 @@ def add_bug(request):
 def add_comment_bug(request, id):
  
     bug = get_object_or_404(Bug, pk=id)
+    comment = None
+
+    # bug = Bug.objects.all()
 
 
     if request.method == "POST":
-        form = CommentForm(request.POST)
+        form = CommentForm(data=request.POST)
 
         if form.is_valid():
             comment = form.save(commit=False)
@@ -56,7 +59,10 @@ def add_comment_bug(request, id):
             return redirect('show_bug', id=bug.pk)
     else:
         form = CommentForm()
-    return render(request, "bugcomment.html", {"form": form})
+
+    return render(request, "bugcomment.html", {"form": form,
+                                                "comments": comment,
+                                                "bug": bug})
 
 
 @login_required()
@@ -65,11 +71,14 @@ def bug_description(request, id):
     bug = get_object_or_404(Bug, pk=id)
     bug.views += 1
     bug.save()
-    comment = Comment.objects
+    
+    comment = Comment.objects.all()
     form = CommentForm(request.POST)
+
+    print(comment)
     return render(request, "bugdescription.html",
                   {
-                     'bug': bug, 'comment': comment, 'form': form
+                     'bug': bug, 'comments': comment, 'form': form
                    })
 
 @login_required()
@@ -81,3 +90,12 @@ def toggle_status(request, id):
         bug.status = "done"
     bug.save()
     return redirect('show_bug', id=bug.pk)
+
+
+@login_required()
+def delete_comment_bug(request, id):
+
+    comment = get_object_or_404(Comment, pk=id)
+    bug = comment.bug
+    comment.delete()
+    return redirect('bug_description', id=bug.pk)

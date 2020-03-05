@@ -129,7 +129,7 @@ th, td {
 }
 
 .btn-delete{
-    background-color: #rgb(103, 196, 219); 
+    background-color: rgb(103, 196, 219); 
 }
 
 .btn-login{
@@ -154,9 +154,11 @@ th, td {
     margin-top: .5rem;
 }
 
-.comment-card {
-    font-size: 1.1rem;
+.comment-card{
+    background-color: rgb(194, 225, 240);
+    /* font-size: 1.1rem;
     margin-bottom: 1rem;
+    color: black; */
 }
 
 .feature-card {
@@ -171,6 +173,40 @@ th, td {
 
 .card-body {
     padding: .5rem 1.25rem .3rem 1.25rem;
+}
+
+ .modal-content{
+     background-color: #f1f1f1;
+ }
+
+ /* .modal-header{
+     background-color: #75a760;
+     color: #f1f1f1;
+     text-align: center;
+ }
+
+ .modal-title{
+     font-size: 1.5rem;
+     font-variant: small-caps;
+     font-weight: 700;
+     margin: 0 auto;
+ }
+
+ .modal-header .close{
+     color: #f1f1f1;
+     font-weight: 800;
+ }
+
+ .modal-paragraph{
+     color: #488f31;
+     font-size: 1.25rem;
+     text-align: center;
+ } */
+
+ .modal-footer{
+     border: none;
+     padding-bottom: 1rem;
+     padding-right: 1rem;
  }
 
 footer {
@@ -184,7 +220,6 @@ footer {
     background-color: #434343;
     left: 0;
     color: white;
-
 }
 
 footer a {

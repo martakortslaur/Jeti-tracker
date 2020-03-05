@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.conf.urls import url
-from .views import show_bug, bug_description, add_bug, toggle_status, add_comment_bug
+from .views import show_bug, bug_description, add_bug, toggle_status, add_comment_bug, delete_comment_bug
 from .views import allbugs
 
 urlpatterns = [
@@ -12,4 +12,7 @@ urlpatterns = [
     url(r'^toggle/(?P<id>\d+)$', toggle_status),   
     url(r'^add_comment_bug/(?P<id>\d+)/$',
         add_comment_bug, name='add_comment_bug'),
+    url(r'^delete_comment_bug/(?P<id>\d+)/$',
+        delete_comment_bug, name='delete_comment_bug'),
+
 ]
