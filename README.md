@@ -14,9 +14,9 @@ the feeling the website would create for the user by choosing the cold mountain 
 * As a user, I would like to be able to create an account, so that I can create a user profile.
 * As a user, I would like to be able to create an account, so that I can add a bug.
 * As a user, I would like to be able to create an account, so that I can comment on bugs and features.
-* As a user, I would like to be able to create an account, so that I can view available features.
+* As a user, I would like to be able to create an account, so that I can view  features.
 * As a user, I would like to be able to create an account, so that I can see what features have been requested by others.
-* As a user, I would like to be able to create an account, so that I can request features.
+* As a user, I would like to be able to create an account, so that I can request a features.
 * As a user, I would like to be able to create an account, so that I can vote for features that I would like to see being dealt with.
 
 ## Features
@@ -115,6 +115,7 @@ these features.
 * CSS
 * Bootstrap
 * Font Awesome
+* Humanize
 * JavaScript/ jQuery
 * Django
 * Python
@@ -144,8 +145,8 @@ The project was hosted on Heroku. The running application is available [here](ht
 
 #### Local Deployment
 To deploy this could locally you should:
-* Clone the [GitHub repository](https://github.com/LibbyH52/Unicorn-Attractor.git)
-* Install Python on your machine (if it isn't already there)
+* Clone the [GitHub repository](https://github.com/martakortslaur/Jeti-tracker)
+* Install Python on your computer
 * Create a folder to store the project
 * Install a virtual environment
 * Create a new virtual environment and activate it
@@ -159,7 +160,7 @@ To deploy this could locally you should:
     python3 manage.py makemigrations
     python3 manage.py migrate
 * To run your new django project use the following command:
-    python manage.py runserver
+    python3 manage.py runserver
 * For saving the staticfiles and also CSS changes there was written the python3 manage.py collectstatic command to git commandline
 to save the changes to AWS.
 * To reset the data I used the Heroku reset data feature and run migrations again.
@@ -169,7 +170,18 @@ to save the changes to AWS.
 * Developer tool for correcting the errors that have appeared. Using also print statement in the code to see the desired
 messages print on the terminal.
 
+* All HTML and CSS code used on the site has been tested using The W3 CSS Validation Service and The W3 Markup Validation Service.
+The W3C shows that we conform to the standards of HTML and CSS.
+
+* Site was viewed and tested in Google Chrome, Mozilla Firefox and Internet Explorer.
 
 #### Acknowledgements
+
+I received inspiration for this project from [here] (https://unicorn-attractor-milestone-4.herokuapp.com/), especially the
+idea for this project. Some less time consuming yet the websites purpose-fulfilling solutions I received visiting this [website]
+(https://unicorn-bug-tracker.herokuapp.com/) and this [website] (https://unicorn-attractor-project.herokuapp.com/). Picture 
+for the background I got [here] (https://pixabay.com/photos/snowy-mountains-cloudy-snow-1149692/).
+Specially the contrasting sections and the invitation sentence to ask people to write about their projects to me.
+Also, I wanted to have some features similar to the portfolio of Haley Schafer. For example the navbar and rounded icons.
 I am grateful for the help I received from the tutor support especially Xavier's stand up sessions, screenshares with Anna and good
  advice I received from my mentor Moosa Hassan.
