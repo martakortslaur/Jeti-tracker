@@ -5,16 +5,18 @@
 {% block title %} Shopping Cart{% endblock %}
 
 {% block content %}
-{% for item in cart_items %}
 <div class="container" id="cart-page">
+{% for item in cart_items %}
+
 	<div class="row">
 		<div class="col-12">
 			<h3>{{ item.feature.name }}</h3>
-			<p class="feature-description">{{ item.feature.description }}</p>
+			<p class="feature-description">{{ item.feature.description|truncatewords:40 }}</p>
 			<p>{{ item.feature.price }}</p>
-			<p>
+			
 				<form class="form-inline" method="post" action="{% url 'adjust_cart' item.id %}">
 					{% csrf_token %}
+                    <button class="btn btn-danger" type="submit"><span>Remove</span></button>
 					<div class="form-group">
 						<label for="exampleInputAmount" class="sr-only">New Qty</label>
 						<div class="input-group">
@@ -25,10 +27,12 @@
 					</div>
 					<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Add</button>
 				</form>
-			</p>
+			
 		</div>
 	</div>
+    
 	{% endfor %}
+    <div class="container">
 	<div class="row">
 		<div class="col-12">
 			<p>Total</p>
@@ -37,6 +41,7 @@
 				role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a>
 		</div>
 	</div>
+    </div>
 </div>
 
 {% endblock %}

@@ -15,7 +15,7 @@ Pillow==6.2.1
 postgres==2.2.2
 psycopg2==2.8.4
 psycopg2-binary==2.8.3
-pycurl==7.43.0.2
+# pycurl==7.43.0.2
 python-dateutil==1.5
 pytz==2019.3
 requests==2.22.0

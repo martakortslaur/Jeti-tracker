@@ -2,9 +2,11 @@
 
 # Jeti-tracker
 For my last milestone project I chose to create an app that allows the user to be part of the creation process and 
-add the bugs that they see in the app and comment on them. Also for the ecommerce part I chose the feature upvote order that
-allows the user to both request and upvote features that they wpould like to see in the app. Each upvote costs €10. The feature that gets
-the most upvotes will be developed.    
+add the bugs that they see in the app and comment on them. Also for the ecommerce part I chose the feature vote/upvote order that
+allows the user to both add and upvote features that they wpould like to see in the app. Each upvote costs €10. The feature that gets
+the most upvotes will be developed.  
+I named it Jeti-tracker as to emphasize the exciting and adventurous character of this website. I pay a lot of attention to
+the feeling the website would create for the user by choosing the cold mountain background picture what is the habitat of Jetis animals. 
 
 ## UX
 
@@ -15,7 +17,7 @@ the most upvotes will be developed.
 * As a user, I would like to be able to create an account, so that I can view available features.
 * As a user, I would like to be able to create an account, so that I can see what features have been requested by others.
 * As a user, I would like to be able to create an account, so that I can request features.
-* As a user, I would like to be able to create an account, so that I can vote for features that I would like to see being developed.
+* As a user, I would like to be able to create an account, so that I can vote for features that I would like to see being dealt with.
 
 ## Features
 
@@ -24,66 +26,89 @@ the most upvotes will be developed.
 ##### Navbar
 An unauthorised user will see the following links:
 * Jeti-tracker (Navbar brand that links to the Homepage)
-* Register
 * Login
+* Register
+* All bugs
+
 
 A logged in user will see the following links:
 * Jeti-tracker
 * Profile
 * All Bugs
-* Add Bugs
 * All Features
-* Add Feature
-* Shopping Cart
+* Cart
+* Checkout
 * Logout
 
 * User Registration
-To create an account a user must enter an email address, username and password. This functionality was implemented using Django's authentication system. Once they have created an account the user is redirected to the login page. 
+To create an account a user must enter an email address, username and password. This functionality was implemented using Django's authentication system.
+Once they have created an account the user is redirected to the login page. 
 
 * Login
 A registered user can login using their username and password. Once a user has successfully logged in, they will be redirected to their profile page.
 
 * Logout
-A user can log out at any time by clicking on the Logout link on the right-hand side of the navbar. Once logged out the user will be redirected to the Homepage.
+A user can log out at any time by clicking on the Logout link on the right-hand side of the navbar. Once logged out the user
+will be redirected to the Homepage.
 
 * User Profile
-A logged in user will be able to visit their profile page by clicking on the relevant link in the navbar. A user's profile page displays their email address.
+A logged in user will be able to visit their profile page by clicking on the relevant link in the navbar.
+A user's profile page displays their email address.
 
 * Reset Password
-A user who has forgotten their password can request to have it reset by clicking on the 'forgot password' link below the log in form. They will be then redirected to a form where they should enter the email address that was used when creating their account. An email will be sent to that email address with instructions on how to create a new password. 
+A user who has forgotten their password can request to have it reset by clicking on the 'forgot password' link below the log in form.
+They will be then redirected to a form where they should enter the email address that was used when creating their account.
+An email will be sent to that email address with instructions on how to create a new password. 
 
 * View Bugs
-If a user clicks on the 'All Bugs' link in the navbar they will be taken to a page containing a list of all the bugs that have been found. There are two types of bugs, doing and done.
+If a user clicks on the 'All Bugs' link in the navbar they will be taken to a page containing a list of all the bugs that have been found.
+There are two types of bugs, doing and done.
 
 * Add a Bug
 Clicking on the 'Add a Bug' link in the navbar allows a user to add a new bug.
 
 * View a bug description
 
-
 * Comment on a Bug/ Feature
-All logged in users can post comments on a bug report or feature request. 
+All logged in users can post comments on a bug report or feature request.
+
+* Delete comment on a Bug
+
+* Toggle a bug
+All logged in users can click the toggle button when it is done, or again toggle it back to doing.
 
 * Features
-A user can view a list of features that other users have requested. The colour-coded badges (ToDo, Doing and Done) that appear beside the feature title provide the user with visual cues as to what stage of development the feature is at. The thumbs-up icon to the right of the feature title tells a user how many votes that feature has received.
+A user can view a list of features that other users have requested. The colour-coded badges (ToDo, Doing and Done) that appear
+beside the feature title provide the user with visual cues as to what stage of development the feature is at.
+The thumbs-up icon to the right of the feature title tells a user how many votes that feature has received.
 
-* Request a Feature
-A user can submit a feature request by clicking on the 'Request Feature' button on the top right of the list of features. When this button is clicked the user is taken to a form where they fill in details of the feature that they would like to see added to the site. The request is then added to the top of the list on the Features page. It is free to request a feature.
+* Add a Feature
+A user can submit a feature request by clicking on the 'Add Feature' button on the top of the list of features.
+When this button is clicked the user is taken to a form where they fill in details of the feature that
+they would like to see added to the site. The request is then added to the bottom of the list on the Features page. It is free to request a feature.
 
 * View Feature Details
 In development.
 
 * Vote for a Feature
-In development.
+The user can 
 
-* Delete Feature
-In development.
+* Delete Feature from the cart
+The user can delete the voted features from the cart.
 
 * View Cart
-In development.
+The user can see the voted features with the name and description of the feature. They can remove them from the cart if they don't want to upvote
+these features.
 
 * Checkout
- In development.
+ The user has the option to use given card numbers and do a so  called mock purchase to vote for the favourite feature.
+
+#### Features I want to develop
+
+* The delete function to bugs and features if the user was their author.
+
+* Profile with showing the personally added bugs and features.
+
 
 ## Technologies Used
 * HTML
@@ -111,8 +136,8 @@ The project was hosted on Heroku. The running application is available [here](ht
 * Under the Deploy tab I scrolled down to add-ons and connected to the Postgres database
 * Under the settings tab, I clicked on Reveal Config Vars and stored the relevant environment variables as cofig variables
 * Ensured all existing migrations were pushed to the new Postgres database by running:
-    python manage.py makemigrations
-    python manage.py migrate
+    python3 manage.py makemigrations
+    python3 manage.py migrate
 * Created a Procile at the top level of my project to tell Heroku what kind of app was being deployed
 * Added the Heroku app to ALLOWED_HOSTS in settings.py file
 
@@ -131,16 +156,20 @@ To deploy this could locally you should:
     pip install -r requirements.txt
 * Add each app to the list of INSTALLED_APPS in settings.py
 * Run make migrations to create the database
-    python manage.py makemigrations
-    python manage.py migrate
+    python3 manage.py makemigrations
+    python3 manage.py migrate
 * To run your new django project use the following command:
     python manage.py runserver
-
+* For saving the staticfiles and also CSS changes there was written the python3 manage.py collectstatic command to git commandline
+to save the changes to AWS.
+* To reset the data I used the Heroku reset data feature and run migrations again.
 
 ## Testing
 
-* Views, models and forms were validated using the PEP8 checker. 
+* Developer tool for correcting the errors that have appeared. Using also print statement in the code to see the desired
+messages print on the terminal.
 
 
 #### Acknowledgements
-I am grateful for the help I received from the tutor support, Xavier's stand up sessions and my mentor Moosa Hassan.
+I am grateful for the help I received from the tutor support especially Xavier's stand up sessions, screenshares with Anna and good
+ advice I received from my mentor Moosa Hassan.

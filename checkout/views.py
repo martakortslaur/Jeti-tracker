@@ -33,7 +33,7 @@ def checkout(request):
             except stripe.error.CardError:
                 messages.error(request, "Your card was declined!")
             if charge.paid:
-                messages.success(request, "You have successfully paid!")
+                messages.success(request, "You have successfully paid! Choose another feature to vote.")
                 request.session['cart'] = {}
                 feature.upvotes += 1
                 feature.save()
@@ -41,7 +41,7 @@ def checkout(request):
             else:
                 messages.error(request, "Unable to take payment!")
         else:
-            print(payment_form.errors)
+            # print(payment_form.errors)
             messages.error(request,
                            "We were unable to take payment with that card!")
     else:
