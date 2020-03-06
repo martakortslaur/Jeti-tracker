@@ -87,7 +87,7 @@ th, td {
 .btn:active,
 .btn:focus,
 .btn:hover{
-    color: #f1f1f1;
+    color: #eff1f5;
 }
 
 .btn-add{
@@ -103,11 +103,11 @@ th, td {
 
 .btn-cancel{
     background-color: #488f31; 
-    margin: 1% 8% 1% 0;
-    width: 40%;
+    /* margin: 1% 8% 1% 0; */
+    width: 20%;
 }
 
-.btn-cart{
+/* .btn-cart{
     background-color: #488f31; 
     margin-top: 1rem;
     margin-left: 1rem;
@@ -120,7 +120,7 @@ th, td {
     margin-right: 1rem;
     margin-top: 1rem;
     width: 90%;
-}
+} */
 
 .btn-comment{
     background-color: rgb(103, 196, 219);
@@ -181,45 +181,21 @@ th, td {
      background-color: #f1f1f1;
  }
 
- /* .modal-header{
-     background-color: #75a760;
-     color: #f1f1f1;
-     text-align: center;
- }
+.modal-footer{
+    border: none;
+    padding-bottom: 1rem;
+    padding-right: 1rem;
+}
 
- .modal-title{
-     font-size: 1.5rem;
-     font-variant: small-caps;
-     font-weight: 700;
-     margin: 0 auto;
- }
-
- .modal-header .close{
-     color: #f1f1f1;
-     font-weight: 800;
- }
-
- .modal-paragraph{
-     color: #488f31;
-     font-size: 1.25rem;
-     text-align: center;
- } */
-
- .modal-footer{
-    
-     border: none;
-     padding-bottom: 1rem;
-     padding-right: 1rem;
- }
-
-.comments-part {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5), url("../img/mountain.jpg"));
+#cart-page {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
     min-height: -webkit-fill-available;
 }
+
 
 footer {
     position: fixed;

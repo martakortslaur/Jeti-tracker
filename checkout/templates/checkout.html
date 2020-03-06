@@ -1,58 +1,87 @@
 {% extends "base.html" %}
-{% load static from staticfiles %}
+{% load staticfiles %}
 {% load bootstrap_tags %}
+{% block title %}Checkout{% endblock %}
 
 {% block head_js %}
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
-    //<![CDATA[
+	//<![CDATA[
         Stripe.publishableKey = '{{ publishable }}';
     //]]>
 </script>
-<script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
-{% endblock %}
-
+{% endblock head_js %}
 {% block content %}
 
 <div class="container">
-    {% for item in cart_items %}
-        <div class="row">
-            <div class="col-12">
-                <div class="product" style="background-image: url('{{ MEDIA_URL }}{{ item.product.image }}')"></div>
+	{% for item in cart_items %}
+	<div class="row">
+		<div class="col-12">
+			<div class="product" style="background-image: url('{{ MEDIA_URL }}{{ item.product.image }}')"></div>
 
-                <div class="caption">
-                    <h3>{{ item.feature.name }}</h3>
-                    <p>item.price</p>
-                </div>
-            </div>
-        </div>
-    {% endfor %}
+			<div class="caption">
+				<h3>{{ item.feature.name }}</h3>
+				<p>item.price</p>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
 </div>
 
 
 <div class="container">
-    <div class="row">
-        <div class="col-12">
-            <h2>Total</h2>
-            <h2><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ total }}</h2>
-        </div>
+	<div class="row">
+		<div class="col-12">
+			<h2>Total</h2>
+			<h2><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ total }}</h2>
+		</div>
 
-        <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
-        <legend>Payment Details</legend>
+		<form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
+			<legend>Payment Details</legend>
 
-        <div id="credit-card-errors" style="display: none;">
-            <div id="alert-message block-message error" id="stripe-error-message"></div>
-            </div>
-        </div?
-        <div class="form-group col-md-6">
-        {{ payment_form | as_bootstrap }}
-        </div>
+			<div id="credit-card-errors" style="display: none;">
+				<div id="alert-message block-message error" id="stripe-error-message"></div>
+			</div>
+			</div? <div class="form-group col-md-6">
+			{{ payment_form | as_bootstrap }}
+	</div>
 
-    {% csrf_token %}
-        <div class="form-group col-md-12">
-        <input class=" btn btn-primary" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
+	{% csrf_token %}
+	<div class="form-group col-md-12">
+		<input class=" btn btn-primary" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
         </div>
-        </form>
-    </div>
+		</form>
+	</div>
 </div>
+
+<div class="modal fade" id="checkoutModal" tabindex="-1" role="document" aria-labelledby="checkoutModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="checkoutModalLabel">Checkout</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+			</div>
+			<div class="modal-body">
+				<p>This page in test mode. Please use one of the following 16 digit credit card numbers to submit the
+					form:</p>
+				<ul>
+					<li><strong>4242 4242 4242 4242 </strong> </li>
+					<li><strong>5555 5555 5555 4444</strong></li>
+				</ul>
+				<p>Or visit <a href="https://stripe.com/docs/testing#international-cards">stripe.com</a> for a list of
+					test cards and their corresponding countries.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-cancel" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+{% block myjs %}
+<script type="text/javascript" src="{% static 'js/modal.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
 {% endblock %}

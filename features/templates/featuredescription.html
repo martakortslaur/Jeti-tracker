@@ -1,7 +1,10 @@
-{% extends "base.html" %} {% load bootstrap_tags %} {% block content %}
-<div class="row">
-    <div class="col-md-12 col-sm-12">
-        <div class="row">
+{% extends "base.html" %} {% load staticfiles %}
+{% load humanize %}
+{% load bootstrap_tags %} {% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+       
             <h4>
                 {{ feature.name }} {% if feature.status == "todo" %}
                 <span class="label label-danger">Status: Todo</span> {% elif feature.status == "doing" %}
