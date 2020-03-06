@@ -2,11 +2,16 @@
 {% load staticfiles %}
 {% load humanize %}
 {% block content %}
-
-
 <div class="container">
-	<div class="col-2">
-		<h1>All Features</h1>
+	<div class="col-3">
+<h1>All Features</h1>
+        <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+            <a href="{% url 'new_feature' %}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Add Feature</button></a>
+        </div>
+	</div>
+    </div>
+<div class="container">
+	<div class="col-3">
 		{% for feature in features %}
 		<div class="features-card">
 			{% if feature.status == "todo" %}
@@ -53,9 +58,8 @@
 								<h4 class="modal-title" id="myModalLabel">Upvote Feature</h4>
 							</div>
 							<div class="modal-body">
-								You can prioritize your feature and help us in same time. By clicking the Add button,
-								you agree to pay a fee of 10£ for requested feature. We promise always to spend at least
-								50% of our time working on developing the feature.
+								Give vote for your favourite feature. By clicking the Add button,
+								you agree to pay a fee of 10£ for requested feature.
 							</div>
 							<div class="modal-footer">
 								<div class="row">
