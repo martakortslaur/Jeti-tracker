@@ -1,35 +1,27 @@
 from django.db import models
-from django.utils import timezone
 from django.contrib.auth.models import User
 
-
+# Create your models here.
 class Feature(models.Model):
-
-    WAITING = 'Waiting'
-    INPROGRESS = 'In Progress'
-    COMPLETED = 'Completed'
-    STATUS_CHOICES = ((WAITING, 'Waiting'),
-                      (INPROGRESS, 'In Progress'), (COMPLETED, 'Completed'))
-
-    name = models.CharField(max_length=50, blank=False)
-    details = models.TextField(blank=False)
-    username = models.ForeignKey(User, default=None)
-    created_date = models.DateTimeField(blank=True, default=None, null=True)
-    waiting_date = models.DateTimeField(blank=True, default=None, null=True)
-    in_progress_date = models.DateTimeField(
-        blank=True, default=None, null=True)
-    completion_date = models.DateTimeField(blank=True, default=None, null=True)
-    views = models.IntegerField(default=0)
+    STATUS_CHOICES = (
+        ('todo', 'To do'),
+        ('doing', 'Doing'),
+        ('done', 'Done'),
+    )
+    name = models.CharField(max_length=254)
+    description = models.TextField()
+    status = models.CharField(max_length=5, choices=STATUS_CHOICES, default="todo")
     upvotes = models.IntegerField(default=0)
-    status = models.CharField(
-        max_length=40, choices=STATUS_CHOICES, default=WAITING)
-
+    views = models.IntegerField(default=0)
+    author = models.ForeignKey(User)
+    
     def __str__(self):
         return self.name
-
-class UpvoteFeature(models.Model):
-    upvoted_feature = models.ForeignKey(Feature, default=None)
-    user = models.ForeignKey(User, default=None)
-
+        
+class FeatureComment(models.Model):
+    description = models.TextField()
+    feature = models.ForeignKey(Feature)
+    author = models.ForeignKey(User)
+    
     def __str__(self):
-        return str(self.user)
+        return self.description

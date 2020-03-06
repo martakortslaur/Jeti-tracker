@@ -156,17 +156,19 @@ th, td {
 
 .comment-card{
     background-color: rgb(194, 225, 240);
-    /* font-size: 1.1rem;
-    margin-bottom: 1rem;
-    color: black; */
+    font-size: 1.1rem;
+    margin-bottom: 50px;
+    color: black;
 }
 
-.feature-card {
+.features-card {
     background-color: rgb(175, 174, 194);
-    margin-bottom: 1rem;
+    margin-bottom: 40px;
+    width: 35%;
 }
 
 .bug-card {
+    background-color: rgb(175, 174, 194);
     font-size: 1.1rem;
     margin-bottom: 1rem;
 }
@@ -204,10 +206,20 @@ th, td {
  } */
 
  .modal-footer{
+    
      border: none;
      padding-bottom: 1rem;
      padding-right: 1rem;
  }
+
+.comments-part {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5), url("../img/mountain.jpg"));
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    min-height: -webkit-fill-available;
+}
 
 footer {
     position: fixed;

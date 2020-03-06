@@ -1,59 +1,63 @@
+from django.shortcuts import render, get_object_or_404, redirect, reverse
+from .models import Feature, FeatureComment
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect,  get_object_or_404
-from django.core.paginator import Paginator
-from django.contrib.auth.models import User
-from .models import Feature, UpvoteFeature
-from django.utils import timezone
-from .forms import AddFeatureForm
+from .forms import FeatureForm, FeatureCommentForm
 
-def get_features(request): 
-    orders = Feature.objects.all().order_by('-created_date')
-    feature = Feature.objects.order_by('username').all()
-    paginator = Paginator(feature, 15)
-    page = request.GET.get('page', 1)
-    feature = paginator.page(page)
-    return render(request, 'features.html', {'feature': feature, 'orders': orders})
 
 def features(request):
-
-    orders = Feature.objects.all().order_by('-created_date')
-    return render(request, 'features.html', {'orders': orders})
-
-
-@login_required()
-def get_features(request):
+    features = Feature.objects.all()
+    return render(request, "features.html", {'features':features} )
     
-    orders = Feature.objects.all().order_by('-created_date')
-    feature = Feature.objects.order_by('username').all()
-    paginator = Paginator(feature, 15)
-    page = request.GET.get('page', 1)
-    feature = paginator.page(page)
-    return render(request, 'features.html', {'feature': feature, 'orders': orders})
-
 @login_required()
-def create_feature(request):
-
+def feature_description(request, pk):
+    """
+    Create a view that returns a single
+    bug object based on the bug ID (pk) and
+    render it to the bug_detail.html template
+    or return 404 error if object is not found
+    """
+    feature = get_object_or_404(Feature, pk=pk)
     if request.method == "POST":
-        form = AddFeatureForm(request.POST)
+        
+        form = FeatureCommentForm(request.POST)
+        
+        if form.is_valid():
+            featureComment = form.save(commit=False)
+            featureComment.feature = feature
+            featureComment.author = request.user
+            featureComment.save()
+            return redirect(reverse('feature_description', kwargs={'pk': pk}))
+            
+    else:
+        form = FeatureCommentForm()
+        comments = FeatureComment.objects.filter(feature__pk=feature.pk)
+        comments_total = len(comments)
+        feature.views += 1
+        feature.save()
+        return render(request, 'featuredescription.html', {'feature':feature, 'comments':comments, 'comments_total':comments_total, 'form':form})
+    
+@login_required()
+def add_or_edit_feature(request, id=None):
+
+    feature =  get_object_or_404(Feature, pk=id) if id else None
+    
+    if request.method == "POST":
+        form = FeatureForm(request.POST, instance=feature)
+        
+        
         if form.is_valid():
             feature = form.save(commit=False)
-            feature.username = request.user
+            feature.author = request.user
             feature.save()
-            return redirect('get_features')
+            return redirect('feature_description', feature.id)
+            
     else:
-        form = AddFeatureForm()
-    return render(request, 'create_feature.html', {'form': form})
-
-@login_required()
-def delete_feature(request, pk):
-
-    feature = get_object_or_404(Feature, pk=pk)
-    if request.user == feature.username:
-        feature.delete()
-        messages.success(request, 'This feature has been deleted.')
-    else:
-        messages.info(request,
-                      'You do not have permission to delete this feature.')
-    return redirect('get_features')
-
+        form = FeatureForm(instance=feature)
+    return render(request, 'create_feature.html', {'form':form})
+    
+@login_required() 
+def delete_feature(request, id):
+     feature =  get_object_or_404(Feature, pk=id) 
+     feature.delete()
+     return redirect('features')
 

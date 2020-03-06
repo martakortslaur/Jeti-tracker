@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.conf.urls import url
-from .views import show_bug, bug_description, add_bug, toggle_status, add_comment_bug, delete_comment_bug
-from .views import allbugs
+from .views import show_bug, bug_description, add_bug, toggle_status, add_comment_bug, delete_comment_bug, allbugs
 
 urlpatterns = [
     url(r'^$', allbugs, name='allbugs'),

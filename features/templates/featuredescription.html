@@ -1,0 +1,48 @@
+{% extends "base.html" %} {% load bootstrap_tags %} {% block content %}
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="row">
+            <h4>
+                {{ feature.name }} {% if feature.status == "todo" %}
+                <span class="label label-danger">Status: Todo</span> {% elif feature.status == "doing" %}
+                <span class="label label-warning">Status: Doing</span> {% else %}
+                <span class="label label-success">Status: Done</span> {% endif %}
+            </h4>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <p>{{ feature.description }}</p>
+                <div class="row">
+                    <p class="views"><span class="glyphicon glyphicon-ok"></span> {{ feature.upvotes }}</p>
+                </div>
+                <div class="row">
+                    <h5><span class="boldtext">Author: </span>{{ feature.author }}</h5>
+                    <a href="{% url 'features' %}" class="btn btn-success">Back</a>
+                </div>
+                <hr>
+            </div>
+        </div>
+        {% if comments %}
+        <div class="row">
+            <h4>Comments <span style="color:black; font-size:15px;">({{ comments_total }})</span></h4>
+        </div>
+        <div class="row">
+            {% for comment in comments %}
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h5>{{ comment.author }}</h5>
+                    <p> {{ comment.description }} </p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <div class="row">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %} {{ form | as_bootstrap }}
+                <button type="submit" class="btn btn-info">Add comment</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

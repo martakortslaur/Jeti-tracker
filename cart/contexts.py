@@ -7,6 +7,7 @@ def cart_contents(request):
     Ensures anything added to cart is
     available on every page
     """
+    price = 10
     cart = request.session.get('cart', {})
     cart_items = []
 
@@ -15,7 +16,8 @@ def cart_contents(request):
 
     for id, quantity in cart.items():
         feature = get_object_or_404(Feature, pk=id)
-        total += quantity * feature.vote_price
+        total += 10
+        print(total)
         feature_count += quantity
         cart_items.append({'id': id, 'quantity': quantity, 'feature': feature})
     return {
