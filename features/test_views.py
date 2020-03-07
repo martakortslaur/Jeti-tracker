@@ -27,7 +27,7 @@ class TestFeatureViews(TestCase):
         feature = Feature.objects.create(
             name='New feature',
             # details='New feature detail',
-            requested_by=user)
+            username=user)
         feature.save()
         logged_in = self.c.login(username='testing', password='test')
 
