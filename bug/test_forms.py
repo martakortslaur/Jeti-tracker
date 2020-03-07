@@ -1,5 +1,5 @@
 from django.test import TestCase
-from bug.forms import AddBugForm, AddBugCommentForm
+from bug.forms import AddBugForm, CommentForm
 
 
 class TestAddBugForm(TestCase):
@@ -8,9 +8,9 @@ class TestAddBugForm(TestCase):
         self.assertFalse(form.is_valid())
         self.assertEqual(form.errors['details'], [u'This field is required.'])
 
-class TestAddBugCommentForm(TestCase):
+class TestCommentForm(TestCase):
     def test_can_create_bug_with_missing_data(self):
-        form = AddBugCommentForm({'comment': ' '})
+        form = CommentForm({'comment': ' '})
         self.assertFalse(form.is_valid())
         self.assertEqual(form.errors['comment'], [u'This field is required.'])
 

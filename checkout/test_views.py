@@ -15,6 +15,6 @@ class TestCheckoutViews(TestCase):
         logged_in = self.c.login(username='test_user', password='example')
 
     def test_checkout(self):
-        response = self.c.get('/checkout/')
+        response = self.c.get('checkout')
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'checkout.html')
