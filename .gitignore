@@ -2,5 +2,5 @@ env.py
 *__pycache__
 *.pyc
 *.png
-static/
 media/
+
